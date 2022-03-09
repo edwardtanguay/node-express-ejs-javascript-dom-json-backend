@@ -14,10 +14,19 @@ app.get('/', (req, res) => {
 	});
 });
 
+app.post('/', (req, res) => {
+	const message = req.body.message;
+	const data = {
+		message
+	};
+	fs.writeFile('./api/data/data.json', JSON.stringify(data), (err) => {
+		res.status(200).json({
+			success: true,
+			message
+		});
+	});
+});
+
 app.listen(PORT, () => {
 	console.log(`Listening on port http://localhost:${PORT}`);
 });
-
-function getJson() {
-
-}
